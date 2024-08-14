@@ -1,0 +1,72 @@
+spring:
+  application:
+    name: blog
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_BLOG_DB:localhost:5432/blog}
+    username: ${POSTGRES_BLOG_USER:blog}
+    password: ${POSTGRES_BLOG_PASSWORD:blog}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /personal-blog
+  error:
+    whitelabel:
+      enabled: false
+    include-stacktrace: never
+
+logging:
+  level:
+    org.springframework: DEBUG
+    org.postgresql: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_BLOG_DB}
+    username: ${POSTGRES_BLOG_USER}
+    password: ${POSTGRES_BLOG_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        use_sql_comments: false
+
+logging:
+  level:
+    org.springframework: INFO
+    org.postgresql: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
