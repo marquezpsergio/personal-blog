@@ -23,7 +23,7 @@ spring:
 server:
   port: 8080
   servlet:
-    context-path: /personal-blog
+    context-path: /blog
   error:
     whitelabel:
       enabled: false
@@ -48,10 +48,6 @@ spring:
   config:
     activate:
       on-profile: prod
-  datasource:
-    url: jdbc:postgresql://${POSTGRES_BLOG_DB}
-    username: ${POSTGRES_BLOG_USER}
-    password: ${POSTGRES_BLOG_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: validate
