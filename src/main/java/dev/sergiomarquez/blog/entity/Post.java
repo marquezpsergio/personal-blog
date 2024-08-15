@@ -1,9 +1,10 @@
 package dev.sergiomarquez.blog.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -18,17 +19,19 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String title;
 
     @Column(length = 5000)
+    @NotBlank
     private String content;
 
     private String author;
 
     private String image;
 
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private Instant date;
 
     private int likeCount;
 
@@ -37,4 +40,9 @@ public class Post {
     @ElementCollection
     private List<String> tags;
 
+    public Post(String title, String content, String author) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
 }

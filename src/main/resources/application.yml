@@ -3,11 +3,13 @@ spring:
     name: blog
   profiles:
     active: dev
+
   datasource:
     url: jdbc:postgresql://${POSTGRES_BLOG_DB:localhost:5432/blog}
     username: ${POSTGRES_BLOG_USER:blog}
     password: ${POSTGRES_BLOG_PASSWORD:blog}
     driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: create
