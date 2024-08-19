@@ -2,17 +2,16 @@ package dev.sergiomarquez.blog.controller;
 
 import dev.sergiomarquez.blog.entity.Post;
 import dev.sergiomarquez.blog.service.PostService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/posts")
+@CrossOrigin("*")
 public class PostController {
 
     private final PostService postService;
@@ -27,20 +26,47 @@ public class PostController {
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
         try {
             Post createdPost = postService.save(post);
-            return createResponse(createdPost);
+            logger.info("Post created: " + createdPost);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
         } catch (Exception e) {
-            return handleException(e);
+            logger.severe("Error creating post: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    private ResponseEntity<Post> createResponse(Post post) {
-        logger.info("Post created: " + post);
-        return ResponseEntity.status(HttpStatus.CREATED).body(post);
+    @PostMapping("/multi")
+    public ResponseEntity<Iterable<Post>> createPosts(@RequestBody Iterable<Post> posts) {
+        try {
+            Iterable<Post> createdPosts = postService.saveAll(posts);
+            logger.info("Posts created: " + createdPosts);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdPosts);
+        } catch (Exception e) {
+            logger.severe("Error creating posts: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
-    private ResponseEntity<Post> handleException(Exception e) {
-        logger.severe("Error creating post: " + e.getMessage());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    @GetMapping
+    public ResponseEntity<Iterable<Post>> getAllPosts() {
+        try {
+            Iterable<Post> posts = postService.getAllPosts();
+            return ResponseEntity.ok(posts);
+        } catch (Exception e) {
+            logger.severe("Error getting posts: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long postId) {
+        try {
+            Post post = postService.getPostById(postId);
+            return ResponseEntity.ok(post);
+        } catch (EntityNotFoundException e) {
+            logger.severe("Post not found: " + e.getMessage());
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
 
 }
