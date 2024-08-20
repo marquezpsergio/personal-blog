@@ -1,7 +1,7 @@
-package dev.sergiomarquez.blog.controller;
+package dev.sergiomarquez.blog.post.controller;
 
-import dev.sergiomarquez.blog.entity.Post;
-import dev.sergiomarquez.blog.service.PostService;
+import dev.sergiomarquez.blog.post.entity.Post;
+import dev.sergiomarquez.blog.post.service.PostService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

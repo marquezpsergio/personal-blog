@@ -1,7 +1,7 @@
-package dev.sergiomarquez.blog.controller;
+package dev.sergiomarquez.blog.comment.controller;
 
-import dev.sergiomarquez.blog.entity.Comment;
-import dev.sergiomarquez.blog.service.CommentService;
+import dev.sergiomarquez.blog.comment.entity.Comment;
+import dev.sergiomarquez.blog.comment.service.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

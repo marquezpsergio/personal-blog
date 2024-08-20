@@ -1,5 +1,6 @@
-package dev.sergiomarquez.blog.entity;
+package dev.sergiomarquez.blog.comment.entity;
 
+import dev.sergiomarquez.blog.post.entity.Post;
 import jakarta.persistence.*;
 import lombok.Data;
 

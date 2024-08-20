@@ -1,6 +1,6 @@
-package dev.sergiomarquez.blog.service;
+package dev.sergiomarquez.blog.comment.service;
 
-import dev.sergiomarquez.blog.entity.Comment;
+import dev.sergiomarquez.blog.comment.entity.Comment;
 
 public interface CommentService {
 

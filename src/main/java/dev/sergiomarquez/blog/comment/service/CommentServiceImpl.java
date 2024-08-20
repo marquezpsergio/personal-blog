@@ -1,9 +1,9 @@
-package dev.sergiomarquez.blog.service;
+package dev.sergiomarquez.blog.comment.service;
 
-import dev.sergiomarquez.blog.entity.Comment;
-import dev.sergiomarquez.blog.entity.Post;
-import dev.sergiomarquez.blog.repository.CommentRepository;
-import dev.sergiomarquez.blog.repository.PostRepository;
+import dev.sergiomarquez.blog.comment.entity.Comment;
+import dev.sergiomarquez.blog.comment.repository.CommentRepository;
+import dev.sergiomarquez.blog.post.entity.Post;
+import dev.sergiomarquez.blog.post.repository.PostRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 

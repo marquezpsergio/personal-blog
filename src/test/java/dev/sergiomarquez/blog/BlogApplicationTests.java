@@ -1,9 +1,9 @@
 package dev.sergiomarquez.blog;
 
-import dev.sergiomarquez.blog.entity.Post;
-import dev.sergiomarquez.blog.repository.PostRepository;
-import dev.sergiomarquez.blog.service.PostService;
-import dev.sergiomarquez.blog.service.PostServiceImpl;
+import dev.sergiomarquez.blog.post.entity.Post;
+import dev.sergiomarquez.blog.post.repository.PostRepository;
+import dev.sergiomarquez.blog.post.service.PostService;
+import dev.sergiomarquez.blog.post.service.PostServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

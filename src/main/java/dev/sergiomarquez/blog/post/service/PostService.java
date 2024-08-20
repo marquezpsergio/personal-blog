@@ -1,6 +1,6 @@
-package dev.sergiomarquez.blog.service;
+package dev.sergiomarquez.blog.post.service;
 
-import dev.sergiomarquez.blog.entity.Post;
+import dev.sergiomarquez.blog.post.entity.Post;
 
 public interface PostService {
 

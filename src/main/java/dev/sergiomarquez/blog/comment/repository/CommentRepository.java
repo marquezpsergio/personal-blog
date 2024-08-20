@@ -1,6 +1,6 @@
-package dev.sergiomarquez.blog.repository;
+package dev.sergiomarquez.blog.comment.repository;
 
-import dev.sergiomarquez.blog.entity.Comment;
+import dev.sergiomarquez.blog.comment.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
