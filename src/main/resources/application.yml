@@ -2,7 +2,7 @@ spring:
   application:
     name: blog
   profiles:
-    active: dev
+    active: prod
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_BLOG_DB:localhost:5432/blog}
