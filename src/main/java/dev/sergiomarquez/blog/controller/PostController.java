@@ -67,6 +67,27 @@ public class PostController {
             return ResponseEntity.notFound().build();
         }
     }
-    
 
+    @PatchMapping("/{postId}/like")
+    public ResponseEntity<Post> likePost(@PathVariable Long postId) {
+        try {
+            postService.likePost(postId);
+            return ResponseEntity.ok().build();
+        } catch (EntityNotFoundException e) {
+            logger.severe("Post not found: " + e.getMessage());
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/search/{title}")
+    public ResponseEntity<Iterable<Post>> searchByTitle(@PathVariable String title) {
+        try {
+            Iterable<Post> posts = postService.searchByTitle(title);
+            return ResponseEntity.ok(posts);
+        } catch (Exception e) {
+            logger.severe("Error searching posts: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+    
 }

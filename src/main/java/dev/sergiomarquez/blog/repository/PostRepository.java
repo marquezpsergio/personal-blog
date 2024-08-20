@@ -9,4 +9,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Iterable<Post> findAllByOrderByIdDesc();
 
+    Iterable<Post> findAllByTitleContainingIgnoringCaseOrderByIdDesc(String title);
+
 }

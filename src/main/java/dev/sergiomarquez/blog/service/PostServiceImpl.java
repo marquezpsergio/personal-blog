@@ -6,6 +6,8 @@ import dev.sergiomarquez.blog.utils.date.DateUtils;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -45,6 +47,20 @@ public class PostServiceImpl implements PostService {
                     return postRepository.save(post);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Post not found"));
+    }
+
+    public void likePost(long postId) {
+        Optional<Post> post = postRepository.findById(postId);
+        if (post.isPresent()) {
+            post.get().setLikeCount(post.get().getLikeCount() + 1);
+            postRepository.save(post.get());
+        } else {
+            throw new EntityNotFoundException("Post not found");
+        }
+    }
+
+    public Iterable<Post> searchByTitle(String title) {
+        return postRepository.findAllByTitleContainingIgnoringCaseOrderByIdDesc(title);
     }
 
 }

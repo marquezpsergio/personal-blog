@@ -11,4 +11,8 @@ public interface PostService {
     Iterable<Post> getAllPosts();
 
     Post getPostById(Long id);
+
+    void likePost(long postId);
+
+    Iterable<Post> searchByTitle(String title);
 }
